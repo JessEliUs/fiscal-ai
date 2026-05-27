@@ -6,7 +6,7 @@ app = FastAPI(title="FiscalAI", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "https://fiscal-ai-nine.vercel.app/"],
+    allow_origins=["http://localhost:5173", "https://fiscal-ai-nine.vercel.app"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
