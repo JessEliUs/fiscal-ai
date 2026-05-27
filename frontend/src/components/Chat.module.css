@@ -1,0 +1,19 @@
+.container { display: flex; flex-direction: column; height: 100%; }
+.messages { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.message { display: flex; }
+.user { justify-content: flex-end; }
+.assistant { justify-content: flex-start; }
+.bubble { max-width: 75%; padding: 0.75rem 1rem; border-radius: 1rem; line-height: 1.6; font-size: 0.9rem; }
+.user .bubble { background: #1a5c38; color: #fff; border-bottom-right-radius: 0.25rem; }
+.assistant .bubble { background: #f1f5f9; color: #1e293b; border-bottom-left-radius: 0.25rem; }
+.typing { display: flex; align-items: center; gap: 4px; padding: 0.75rem 1rem; }
+.typing span { width: 7px; height: 7px; background: #94a3b8; border-radius: 50%; animation: bounce 1.2s infinite; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+.inputArea { display: flex; gap: 0.75rem; padding: 1rem 1.5rem; border-top: 1px solid #e2e8f0; background: #fff; }
+.input { flex: 1; padding: 0.65rem 0.9rem; border: 1px solid #cbd5e1; border-radius: 0.5rem; font-size: 0.9rem; font-family: inherit; resize: none; outline: none; transition: border-color 0.2s; }
+.input:focus { border-color: #1a5c38; }
+.sendBtn { padding: 0 1.25rem; background: #1a5c38; color: #fff; border: none; border-radius: 0.5rem; font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: background 0.2s; }
+.sendBtn:hover:not(:disabled) { background: #14472c; }
+.sendBtn:disabled { opacity: 0.5; cursor: not-allowed; }
