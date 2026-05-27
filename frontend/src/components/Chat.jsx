@@ -2,14 +2,27 @@ import { useState, useRef, useEffect } from "react";
 import { sendMessage } from "../api";
 import styles from "./Chat.module.css";
 
+function renderMarkdown(text) {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.*?)\*/g, "<em>$1</em>")
+    .replace(/^### (.*$)/gm, "<h4>$1</h4>")
+    .replace(/^## (.*$)/gm, "<h3>$1</h3>")
+    .replace(/^- (.*$)/gm, "<li>$1</li>")
+    .replace(/(<li>.*<\/li>)/gs, "<ul>$1</ul>")
+    .replace(/\n/g, "<br />");
+}
+
 function Message({ role, content }) {
   return (
     <div className={`${styles.message} ${role === "user" ? styles.user : styles.assistant}`}>
-      <div className={styles.bubble}>
-        {content.split("\n").map((line, i) => (
-          <span key={i}>{line}{i < content.split("\n").length - 1 && <br />}</span>
-        ))}
-      </div>
+      <div
+        className={styles.bubble}
+        {...(role === "assistant"
+          ? { dangerouslySetInnerHTML: { __html: renderMarkdown(content) } }
+          : { children: content }
+        )}
+      />
     </div>
   );
 }
